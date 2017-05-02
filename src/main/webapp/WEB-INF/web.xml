@@ -9,9 +9,20 @@
         <servlet-class>com.github.nenomm.wickedly.oldschool.HelloWorldServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <display-name>HelloJspServlet</display-name>
+        <servlet-name>HelloJspServlet</servlet-name>
+        <servlet-class>com.github.nenomm.wickedly.oldschool.HelloJspServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>HelloWorldServlet</servlet-name>
         <url-pattern>/servlet1.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HelloJspServlet</servlet-name>
+        <url-pattern>/servlet2.do</url-pattern>
     </servlet-mapping>
 
 </web-app>
