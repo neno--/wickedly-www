@@ -19,7 +19,17 @@
         <display-name>LifecycleServlet</display-name>
         <servlet-name>LifecycleServlet</servlet-name>
         <servlet-class>com.github.nenomm.wickedly.oldschool.LifecycleServlet</servlet-class>
+
+        <init-param>
+            <param-name>firstParam</param-name>
+            <param-value>this is the value</param-value>
+        </init-param>
     </servlet>
+
+    <context-param>
+        <param-name>sharedParam</param-name>
+        <param-value>this is shared value</param-value>
+    </context-param>
 
     <servlet-mapping>
         <servlet-name>HelloWorldServlet</servlet-name>

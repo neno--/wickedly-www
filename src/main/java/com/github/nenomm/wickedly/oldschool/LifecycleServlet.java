@@ -26,8 +26,16 @@ public class LifecycleServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {
 		log.info("In init method, calling super");
+		log.info("Reading init parameter firstParam: {}", servletConfig.getInitParameter("firstParam"));
+
+		/*
+		 * this has to be called first, if you want to use servletContext inside init method.
+		 */
 		super.init(servletConfig);
+		log.info("Reading parameter sharedParam: {}", getServletContext().getInitParameter("sharedParam"));
+
 		log.info("In init method, finished with super");
+
 	}
 
 	@Override
