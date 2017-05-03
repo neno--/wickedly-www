@@ -3,6 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+    <listener>
+        <listener-class>com.github.nenomm.wickedly.oldschool.listener.MyListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>sharedParam</param-name>
+        <param-value>this is shared value</param-value>
+    </context-param>
+
     <servlet>
         <display-name>HelloWorldServlet</display-name>
         <servlet-name>HelloWorldServlet</servlet-name>
@@ -25,11 +34,6 @@
             <param-value>this is the value</param-value>
         </init-param>
     </servlet>
-
-    <context-param>
-        <param-name>sharedParam</param-name>
-        <param-value>this is shared value</param-value>
-    </context-param>
 
     <servlet-mapping>
         <servlet-name>HelloWorldServlet</servlet-name>
