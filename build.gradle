@@ -12,4 +12,6 @@ targetCompatibility = 1.7
 dependencies {
     providedCompile 'javax.servlet:servlet-api:2.5'
     runtime 'javax.servlet:jstl:1.1.2'
+
+    compile "ch.qos.logback:logback-classic:1.2.2"
 }

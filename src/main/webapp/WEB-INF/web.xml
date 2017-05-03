@@ -15,6 +15,12 @@
         <servlet-class>com.github.nenomm.wickedly.oldschool.HelloJspServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <display-name>LifecycleServlet</display-name>
+        <servlet-name>LifecycleServlet</servlet-name>
+        <servlet-class>com.github.nenomm.wickedly.oldschool.LifecycleServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>HelloWorldServlet</servlet-name>
         <url-pattern>/servlet1.do</url-pattern>
@@ -23,6 +29,11 @@
     <servlet-mapping>
         <servlet-name>HelloJspServlet</servlet-name>
         <url-pattern>/servlet2.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>LifecycleServlet</servlet-name>
+        <url-pattern>/servlet3.do</url-pattern>
     </servlet-mapping>
 
 </web-app>
