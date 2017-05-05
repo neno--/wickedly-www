@@ -35,6 +35,12 @@
         </init-param>
     </servlet>
 
+    <servlet>
+        <display-name>StatefulServlet</display-name>
+        <servlet-name>StatefulServlet</servlet-name>
+        <servlet-class>com.github.nenomm.wickedly.oldschool.StatefulServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>HelloWorldServlet</servlet-name>
         <url-pattern>/servlet1.do</url-pattern>
@@ -48,6 +54,11 @@
     <servlet-mapping>
         <servlet-name>LifecycleServlet</servlet-name>
         <url-pattern>/servlet3.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>StatefulServlet</servlet-name>
+        <url-pattern>/servlet4.do</url-pattern>
     </servlet-mapping>
 
 </web-app>
