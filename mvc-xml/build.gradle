@@ -14,4 +14,9 @@ dependencies {
     runtime 'javax.servlet:jstl:1.1.2'
 
     compile "ch.qos.logback:logback-classic:1.2.2"
+    compile "org.slf4j:jcl-over-slf4j:1.7.25"
+
+    compile("org.springframework:spring-webmvc:4.3.7.RELEASE") {
+        exclude group: "commons-logging"
+    }
 }
