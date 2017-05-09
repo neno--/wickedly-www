@@ -10,7 +10,9 @@
 
     <servlet-mapping>
         <servlet-name>myMvcServlet</servlet-name>
-        <url-pattern>/servlet1.do</url-pattern>
+        <url-pattern>/servlet1.do/*</url-pattern>
     </servlet-mapping>
+
+    <!--DispatcherServlet.properties default configuration-->
 
 </web-app>

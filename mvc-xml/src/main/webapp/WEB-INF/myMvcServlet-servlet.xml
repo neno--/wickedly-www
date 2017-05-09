@@ -12,4 +12,11 @@
 
     <!-- turn on configuration annotation and the like -->
     <context:component-scan base-package="com.github.nenomm.wickedly.mvcxml"/>
+    <context:component-scan base-package="com.github.nenomm.wickedly.mvcxml.controller"/>
+
+    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
 </beans>
