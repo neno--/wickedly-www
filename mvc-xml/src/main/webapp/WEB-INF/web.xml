@@ -10,9 +10,18 @@
 
     <servlet-mapping>
         <servlet-name>myMvcServlet</servlet-name>
-        <url-pattern>/servlet1.do/*</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
     <!--DispatcherServlet.properties default configuration-->
 
+    <filter>
+        <filter-name>ContentTypeFilter</filter-name>
+        <filter-class>com.github.nenomm.wickedly.mvcxml.filter.ContentTypeFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>ContentTypeFilter</filter-name>
+        <servlet-name>myMvcServlet</servlet-name>
+    </filter-mapping>
 </web-app>
