@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,9 +32,15 @@ public class HelloWorldController {
 		return "springView";
 	}
 
+	// http://localhost:8080/mvc-xml/day/42
+	// @RequestAttribute qualifier doesn't seems to work :(
 	@RequestMapping(path = "/day/{day}", method = RequestMethod.GET)
-	public void bla(@PathVariable String day) {
-		log.info("got pathVar: {}", day);
+	@ResponseBody
+	public String bla(@PathVariable String day,
+			@RequestAttribute String filterAttribute,
+			HttpServletRequest req) {
+		log.info("got pathVar: {}, filterAttribute: {}", day, filterAttribute);
+		return "filterAttribute: " + filterAttribute;
 	}
 
 	// looks like path is not working with @GetMapping
@@ -51,5 +61,42 @@ public class HelloWorldController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.set("X-TROLLED-BY", "trololo");
 		return new ResponseEntity<String>("Hello World", responseHeaders, HttpStatus.CREATED);
+	}
+
+	@ModelAttribute
+	public void thisOneIsAlwaysCalled(Model model) {
+		model.addAttribute(new Integer(42));
+	}
+
+	// does not work that way - it is called every time. and is throwing exceptions if param is ommited
+	/*
+	 * @ModelAttribute
+	 * public void thisOneIsSometimesCalled(@RequestParam String param, Model model) {
+	 * model.addAttribute(new Integer(43));
+	 * }
+	 */
+
+	// http://localhost:8080/mvc-xml/sessionTest
+	@RequestMapping(path = "/sessionTest", method = RequestMethod.GET)
+	@ResponseBody
+	public String bla1(HttpSession session,
+			HttpServletRequest req) {
+		synchronized (this) {
+			Integer counter = (Integer) session.getAttribute("counter");
+			if (counter == null) {
+				counter = new Integer(0);
+				session.setAttribute("counter", counter);
+			}
+			else {
+				session.setAttribute("counter", counter + 1);
+			}
+			return "counter: " + counter;
+		}
+	}
+
+	@RequestMapping("/whatSession")
+	@ResponseBody
+	public String displayHeaderInfo(@CookieValue(name = "JSESSIONID", required = false) String cookie) {
+		return "JSESSIONID: " + cookie;
 	}
 }

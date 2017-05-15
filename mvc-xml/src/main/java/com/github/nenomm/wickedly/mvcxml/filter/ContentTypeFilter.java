@@ -20,8 +20,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 
 public class ContentTypeFilter implements Filter {
-	static final Logger log = LoggerFactory.getLogger(ContentTypeFilter.class);
-	private final String CONTENT_TYPE_VALUE = "text/html; charset=utf-8";
+	private static final Logger log = LoggerFactory.getLogger(ContentTypeFilter.class);
+	private static final String CONTENT_TYPE_VALUE = "text/html; charset=utf-8";
+	public static final String FILTER_ATTRIBUTE_NAME = "filterAttribute";
 
 	private FilterConfig filterConfig;
 
@@ -36,6 +37,9 @@ public class ContentTypeFilter implements Filter {
 			throws IOException, ServletException {
 
 		final HttpServletRequest httpRequest = (HttpServletRequest) request;
+
+		httpRequest.setAttribute(FILTER_ATTRIBUTE_NAME, new Integer(22));
+
 		HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(httpRequest) {
 			@Override
 			public String getHeader(String name) {
