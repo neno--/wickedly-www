@@ -25,7 +25,6 @@
         <property name="interceptors">
             <bean class="com.github.nenomm.wickedly.mvcxml.interceptor.BadRandomInterceptor"/>
         </property>
-        <!--<property name="defaultHandler"></property>-->
     </bean>
 
 </beans>

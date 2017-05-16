@@ -1,6 +1,7 @@
 package com.github.nenomm.wickedly.mvcxml.controller;
 
 import java.beans.PropertyEditorSupport;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.util.UriComponents;
 
 import com.github.nenomm.wickedly.mvcxml.controller.data.MappedList;
 
@@ -60,6 +63,17 @@ public class DataInputController {
 				setValue(result);
 			}
 		});
+	}
+
+	@RequestMapping("/generateUri/{thisOne}")
+	@ResponseBody
+	public String generateUri(@RequestParam String perica) {
+		UriComponents uriComponents = MvcUriComponentsBuilder
+				.fromMethodName(this.getClass(), "generateUri", "iAmPerica").buildAndExpand("thatOne");
+
+		URI uri = uriComponents.encode().toUri();
+
+		return "URI for this method is: " + uri.toString();
 	}
 
 }
