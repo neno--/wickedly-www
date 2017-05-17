@@ -27,4 +27,14 @@
         </property>
     </bean>
 
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="interceptors">
+            <bean class="com.github.nenomm.wickedly.mvcxml.interceptor.BadRandomInterceptor"/>
+        </property>
+    </bean>
+
+    <!-- used by default org.springframework.web.servlet.HandlerExceptionResolver=org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver,\
+    org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver,\
+    org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver-->
+
 </beans>
