@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -85,7 +87,23 @@ public class DataInputOutputController {
 	@ResponseBody
 	SimpleComplexResponse createResponse(HttpServletRequest req) {
 		log.info("Requested representation is: {}", req.getHeader(HttpHeaders.ACCEPT));
-		return new SimpleComplexResponse("HAI from controller");
+		return new SimpleComplexResponse("HAI from createResponse");
+	}
+
+	@RequestMapping("/customResponse/httpEntity")
+	@ResponseBody
+	HttpEntity<SimpleComplexResponse> createResponseHttpEntity(HttpServletRequest req) {
+		log.info("Requested representation is: {}", req.getHeader(HttpHeaders.ACCEPT));
+		return new HttpEntity<SimpleComplexResponse>(new SimpleComplexResponse("HAI from createResponseHttpEntity"));
+	}
+
+	@RequestMapping("/customResponse/responseEntity")
+	@ResponseBody
+	ResponseEntity<SimpleComplexResponse> createResponseResponseEntity(HttpServletRequest req) {
+		log.info("Requested representation is: {}", req.getHeader(HttpHeaders.ACCEPT));
+		return new ResponseEntity<SimpleComplexResponse>(
+				new SimpleComplexResponse("HAI from createResponseResponseEntity"),
+				HttpStatus.CREATED);
 	}
 
 	@RequestMapping("/customRequest")
