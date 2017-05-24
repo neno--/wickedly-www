@@ -5,6 +5,10 @@ public class SimpleComplexResponse {
 	private boolean complex = true;
 	private String greeting = "HAI";
 
+	public SimpleComplexResponse(String greeting) {
+		this.greeting = greeting;
+	}
+
 	public boolean isSimple() {
 		return simple;
 	}

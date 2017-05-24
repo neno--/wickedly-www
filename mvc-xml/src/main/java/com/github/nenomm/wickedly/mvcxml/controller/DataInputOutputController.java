@@ -5,8 +5,11 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -19,8 +22,6 @@ import org.springframework.web.util.UriComponents;
 
 import com.github.nenomm.wickedly.mvcxml.controller.data.MappedList;
 import com.github.nenomm.wickedly.mvcxml.controller.data.SimpleComplexResponse;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping(path = "/dataInput")
@@ -84,7 +85,14 @@ public class DataInputOutputController {
 	@ResponseBody
 	SimpleComplexResponse createResponse(HttpServletRequest req) {
 		log.info("Requested representation is: {}", req.getHeader(HttpHeaders.ACCEPT));
-		return new SimpleComplexResponse();
+		return new SimpleComplexResponse("HAI from controller");
+	}
+
+	@RequestMapping("/customRequest")
+	@ResponseBody
+	String createRequest(HttpEntity<SimpleComplexResponse> req) {
+		SimpleComplexResponse body = req.getBody();
+		return "AOK " + body.getGreeting();
 	}
 
 }

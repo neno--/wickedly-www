@@ -27,14 +27,14 @@ public class MyMessageConverter extends AbstractHttpMessageConverter {
 	@Override
 	protected Object readInternal(Class clazz, HttpInputMessage inputMessage)
 			throws IOException, HttpMessageNotReadableException {
-		return null;
+		return new SimpleComplexResponse("Hello from readInternal");
 	}
 
 	@Override
 	protected void writeInternal(Object o, HttpOutputMessage outputMessage)
 			throws IOException, HttpMessageNotWritableException {
 		SimpleComplexResponse res = (SimpleComplexResponse) o;
-		outputMessage.getBody().write("HAI".getBytes());
+		outputMessage.getBody().write(res.getGreeting().getBytes());
 	}
 
 	@Override
