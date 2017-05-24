@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -17,11 +18,14 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.util.UriComponents;
 
 import com.github.nenomm.wickedly.mvcxml.controller.data.MappedList;
+import com.github.nenomm.wickedly.mvcxml.controller.data.SimpleComplexResponse;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping(path = "/dataInput")
-public class DataInputController {
-	static final Logger log = LoggerFactory.getLogger(DataInputController.class);
+public class DataInputOutputController {
+	static final Logger log = LoggerFactory.getLogger(DataInputOutputController.class);
 
 	@RequestMapping(path = "/boundToParams")
 	@ResponseBody
@@ -74,6 +78,13 @@ public class DataInputController {
 		URI uri = uriComponents.encode().toUri();
 
 		return "URI for this method is: " + uri.toString();
+	}
+
+	@RequestMapping("/customResponse")
+	@ResponseBody
+	SimpleComplexResponse createResponse(HttpServletRequest req) {
+		log.info("Requested representation is: {}", req.getHeader(HttpHeaders.ACCEPT));
+		return new SimpleComplexResponse();
 	}
 
 }
