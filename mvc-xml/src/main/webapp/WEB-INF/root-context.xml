@@ -6,6 +6,8 @@
 http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
        default-init-method="supercalifragilisticexpialidocious">
 
+    <import resource="security-context.xml"/>
+
     <bean id="fromMainContext" class="com.github.nenomm.wickedly.mvcxml.service.TestService">
     </bean>
 

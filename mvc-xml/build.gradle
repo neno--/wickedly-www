@@ -20,4 +20,7 @@ dependencies {
     compile("org.springframework:spring-webmvc:4.3.7.RELEASE") {
         exclude group: "commons-logging"
     }
+
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.2.2.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.2.2.RELEASE'
 }
