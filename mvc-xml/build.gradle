@@ -23,4 +23,7 @@ dependencies {
 
     compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.2.2.RELEASE'
     compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.2.2.RELEASE'
+
+    compile group: 'org.hsqldb', name: 'hsqldb', version: '2.3.4'
+    compile "org.springframework:spring-jdbc:4.3.7.RELEASE"
 }
