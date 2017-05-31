@@ -4,10 +4,23 @@
          xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http/>
+    <!--<http pattern="/login.jsp*" security="none"/>-->
 
-    <user-service>
-        <user name="user" password="password" authorities="ROLE_USER"/>
-    </user-service>
+    <http>
+        <!--<intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
+        <intercept-url pattern="/**" access="hasRole('USER')"/>
+        <form-login/>
+        <http-basic/>
+        <logout/>
+    </http>
+
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN"/>
+                <user name="bob" password="bobspassword" authorities="ROLE_USER"/>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
 
 </b:beans>
