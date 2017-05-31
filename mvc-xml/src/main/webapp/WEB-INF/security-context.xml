@@ -4,19 +4,16 @@
          xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <!--<http pattern="/login.jsp*" security="none"/>-->
-
     <http>
-        <!--<intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
-        <intercept-url pattern="/**" access="hasRole('USER')"/>
+        <intercept-url pattern="/" access="hasRole('USER')"/>
         <form-login/>
-        <http-basic/>
         <logout/>
     </http>
 
     <authentication-manager>
-        <authentication-provider>
-            <jdbc-user-service data-source-ref="dataSource"/>
-        </authentication-provider>
+        <authentication-provider ref='myAuthenticationProvider'/>
     </authentication-manager>
+
+    <b:bean id="myAuthenticationProvider" class="com.github.nenomm.wickedly.mvcxml.security.MyAuthenticationProvider">
+    </b:bean>
 </b:beans>

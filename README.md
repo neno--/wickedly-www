@@ -12,3 +12,9 @@ http://docs.spring.io/spring-security/site/docs/current/guides/html5/
 
 bookmark:
 http://docs.spring.io/spring-security/site/docs/current/reference/html/ns-config.html#ns-form-target
+
+generic data for authentication: principal and credentials - shoud provide toString representations
+applicable for auth process.
+principal is username, credentials is password
+
+when creating custome db schema for roles, role names must have prefix ROLE_

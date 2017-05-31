@@ -9,7 +9,6 @@ http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
 
     <jdbc:embedded-database id="dataSource" type="HSQL">
-        <jdbc:script location="classpath:sql/default-security-schema-hsql.sql"/>
+        <jdbc:script location="classpath:sql/my-security-schema-hsql.sql"/>
     </jdbc:embedded-database>
-
 </beans>
