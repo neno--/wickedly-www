@@ -5,9 +5,9 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/root-context.xml</param-value>
+        <param-value>classpath:/spring-root-context/root-context.xml</param-value>
     </context-param>
-    
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -15,6 +15,10 @@
     <servlet>
         <servlet-name>myMvcServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:/spring-servlet-context/myMvcServlet-servlet.xml</param-value>
+        </init-param>
     </servlet>
 
     <servlet-mapping>
