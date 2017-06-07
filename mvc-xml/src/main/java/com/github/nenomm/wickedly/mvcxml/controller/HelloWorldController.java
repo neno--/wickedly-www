@@ -12,6 +12,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -54,6 +55,7 @@ public class HelloWorldController {
 	// this one fails because it needs content type
 	// error: Cannot extract parameter (HttpEntity requestEntity): no Content-Type found
 	// use filter to add this information if not present
+	@Secured("ROLE_ADMIN")
 	@RequestMapping(path = "/entity")
 	public ResponseEntity<String> handle(HttpEntity<byte[]> requestEntity) throws UnsupportedEncodingException {
 		// do something with request header and body

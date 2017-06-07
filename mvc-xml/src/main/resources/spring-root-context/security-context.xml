@@ -6,8 +6,8 @@
 
     <http>
         <intercept-url pattern="/**" access="hasRole('USER')"/>
-        <!--<form-login/>-->
-        <http-basic/>
+        <form-login/>
+        <!--<http-basic/>-->
         <logout/>
     </http>
 
