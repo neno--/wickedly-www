@@ -4,6 +4,12 @@
          xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
+
+    <http pattern="/rest/**" create-session="stateless">
+        <intercept-url pattern='/**' access="hasRole('REST')" />
+        <http-basic />
+    </http>
+
     <http>
         <intercept-url pattern="/**" access="hasRole('USER')"/>
         <form-login/>

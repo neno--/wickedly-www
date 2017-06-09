@@ -11,7 +11,7 @@ guide:
 http://docs.spring.io/spring-security/site/docs/current/guides/html5/
 
 bookmark:
-http://docs.spring.io/spring-security/site/docs/current/reference/html/security-filter-chain.html
+http://docs.spring.io/spring-security/site/docs/current/reference/html/basic.html
 
 standard security filter ordering:
 http://docs.spring.io/spring-security/site/docs/current/reference/html/ns-config.html#ns-custom-filters
