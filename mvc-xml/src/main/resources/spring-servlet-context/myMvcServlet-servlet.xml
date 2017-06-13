@@ -26,6 +26,7 @@
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
+        <property name="order" value="3"/>
     </bean>
 
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
@@ -44,6 +45,45 @@
             </list>
         </property>
 
+    </bean>
+
+    <bean id="mainViewResolver" class="com.github.nenomm.wickedly.mvcxml.tweaks.CompositePathAwareViewResolver">
+        <property name="thymeleafViewResolver" ref="thymeleafViewResolver"/>
+        <property name="jspViewResolver" ref="jspViewResolver"/>
+        <property name="thymeleafTemplateResolver" ref="thymeleafTemplateResolver"/>
+        <property name="order" value="1"/>
+    </bean>
+
+
+    <!-- SpringResourceTemplateResolver automatically integrates with Spring's own -->
+    <!-- resource resolution infrastructure, which is highly recommended.          -->
+    <bean id="thymeleafTemplateResolver"
+          class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="/WEB-INF/templates/"/>
+        <property name="suffix" value=".html"/>
+        <property name="templateMode" value="HTML"/>
+        <property name="cacheable" value="true"/>
+        <property name="order" value="2"/>
+    </bean>
+
+    <!-- SpringTemplateEngine automatically applies SpringStandardDialect and      -->
+    <!-- enables Spring's own MessageSource message resolution mechanisms.         -->
+    <bean id="templateEngine"
+          class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <property name="templateResolver" ref="thymeleafTemplateResolver"/>
+        <!-- Enabling the SpringEL compiler with Spring 4.2.4 or newer can speed up  -->
+        <!-- execution in most scenarios, but might be incompatible with specific    -->
+        <!-- cases when expressions in one template are reused across different data -->
+        <!-- ypes, so this flag is "false" by default for safer backwards            -->
+        <!-- compatibility.                                                          -->
+        <property name="enableSpringELCompiler" value="true"/>
+    </bean>
+
+    <bean id="thymeleafViewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine"/>
+        <!-- NOTE 'order' and 'viewNames' are optional -->
+        <property name="order" value="1"/>
+        <!--<property name="viewNames" value="*.html,*.xhtml"/>-->
     </bean>
 
     <mvc:default-servlet-handler/>
